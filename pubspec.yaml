@@ -1,7 +1,6 @@
 name: parallel_scroll_view
 description: A widget that can scroll multiple ScrollView at once
 version: 0.0.1
-author: danle.sdev@gmail.com
 homepage: https://github.com/Danopie/parallel_scroll_view
 
 environment:
