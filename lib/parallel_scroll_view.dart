@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-enum ParallelScrollBehavior { Fixed, Interpolate }
+/// Determines how the children scrollviews scroll in relation to each other
+enum ParallelScrollBehavior {
+  /// Scroll until the child's maxScrollExtent is reached and then stop.
+  Fixed,
+  /// Scroll according to the calculated the offset percentage of the focused scrollview
+  /// So that all the scrollviews will reached it's minScrollExtent and maxScrollExtent at the same time
+  Interpolate }
 
+
+/// A widget that control multiple [ParallelScrollChild]s and allow them to scroll simultaneously
 class ParallelScrollView extends StatefulWidget {
+
+  /// A Widget list that can contain one or more [ParallelScrollChild]s
   final List<Widget> children;
+
+  /// The scroll direction of the [ParallelScrollView]
+  /// If vertical, [ParallelScrollChild]s will be horizontal
+  /// If horizontal, [ParallelScrollChild]s will be vertical
   final Axis scrollDirection;
+
+  /// CrossAxisAlignment for the Column or Row based on the [scrollDirection]
   final CrossAxisAlignment crossAxisAlignment;
   final EdgeInsets padding;
   final ParallelScrollBehavior behavior;
@@ -83,8 +99,13 @@ class _ParallelScrollController extends ChangeNotifier {
 }
 
 class ParallelScrollChild extends StatefulWidget {
+  /// Children for the scrollview
   final List<Widget> children;
+
+  /// Used to constraint the height of this scrollview if it's horizontal
   final double height;
+
+  /// Used to constraint the width of this scrollview if it's vertical
   final double width;
 
   const ParallelScrollChild({
